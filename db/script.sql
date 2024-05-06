@@ -1,24 +1,22 @@
-CREATE DATABASE backharrypotter;
+CREATE DATABASE backherois;
 
-CREATE TABLE bruxos (
+CREATE TABLE herois (
 id SERIAL PRIMARY KEY,
-nome VARCHAR(100) NOT NULL,
-idade INT NOT NULL,
-casaHogwarts VARCHAR(100) NOT NULL,
-habilidade VARCHAR(100) NOT NULL,
-patrono VARCHAR(100),
-sangue VARCHAR(100) NOT NULL,
+name VARCHAR(100) NOT NULL,
+power VARCHAR(100) NOT NULL,
+level INT NOT NULL,
+hp INT NOT NULL,
 );
 
-CREATE TABLE varinhas (
+CREATE TABLE batalhas (
 id SERIAL PRIMARY KEY,
-material VARCHAR(100) NOT NULL,
-comprimento INT NOT NULL,
-nucleo VARCHAR(100) NOT NULL,
-dataFabricacao DATE NOT NULL
+heroes1_id INT,
+heroes2_id INT,
+winner_id INT,
+FOREIGN KEY (heroes1_id) REFERENCES herois(id),
+FOREIGN KEY (heroes2_id) REFERENCES herois(id),
+FOREIGN KEY (winner_id) REFERENCES herois(id)
 );
 
-INSERT INTO bruxos (nome, idade, casaHogwarts, habilidade, patrono, sangue) VALUES ('Harry Potter', 20, 'Grifinória', 'Apanhador', 'Cervo', 'puro');
 
-
-INSERT INTO varinhas (material, comprimento, nucleo, dataFabricacao) VALUES ('Madeira', 30, 'Fenix', '2021/01/01'); -teste
+INSERT INTO herois (name, power, level, hp) VALUES ('', '', '', '');
