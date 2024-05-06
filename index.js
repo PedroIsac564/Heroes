@@ -35,6 +35,17 @@ app.get('/herois', async (req, res) => {
     }
 });
 
+app.post('/herois', async (req, res) => {
+    try {
+        const { name, power, level, hp } = req.body;
+        await pool.query('INSERT INTO herois (name, power, level, hp) VALUES ($1, $2, $3, $4)', [name, power, level, hp]);
+
+        res.status(201).send('Heroi criado com sucesso!');
+    } catch (error) {
+        console.error('Erro ao criar o Heroi', error);
+        res.status(500).send('Erro ao criar o Heroi');
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`Rodando perfeitamente na porta ${PORT} 🚀`);
