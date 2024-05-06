@@ -124,6 +124,19 @@ app.get('/batalhas/:id1/:id2', async (req, res) => {
     }
 });
 
+app.get('/batalhas', async (req, res) => {
+    try {
+        const resultado = await pool.query('SELECT * FROM batalhas');
+        res.json({
+            total: resultado.rowCount,
+            batalhas: resultado.rows,
+        });
+    } catch (error) {
+        console.error('Erro ao obter as batalhas', error);
+        res.status(500).send('Erro ao obter as batalhas');
+    }
+}
+);
 app.listen(PORT, () => {
     console.log(`Rodando perfeitamente na porta ${PORT} 🚀`);
 });
