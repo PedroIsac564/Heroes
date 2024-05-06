@@ -13,8 +13,6 @@ const pool = new Pool
         port: 7007,
     });
 
-
-
 app.use(express.json());
 
 app.get('/', (req, res) => {
