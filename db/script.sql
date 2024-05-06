@@ -1,11 +1,11 @@
-CREATE DATABASE backherois;
+CREATE DATABASE backendherois;
 
 CREATE TABLE herois (
 id SERIAL PRIMARY KEY,
 name VARCHAR(100) NOT NULL,
 power VARCHAR(100) NOT NULL,
 level INT NOT NULL,
-hp INT NOT NULL,
+hp INT NOT NULL
 );
 
 CREATE TABLE batalhas (
