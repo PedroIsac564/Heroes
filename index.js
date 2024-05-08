@@ -94,7 +94,7 @@ app.get('/herois/:id', async (req, res) => {
 
 app.get('/batalhas/:id1/:id2', async (req, res) => {
     try {
-        const { id1, id2 } = req.params;
+     const { id1, id2 } = req.params;
         const resultado1 = await pool.query('SELECT * FROM herois WHERE id = $1', [id1]);
         const resultado2 = await pool.query('SELECT * FROM herois WHERE id = $1', [id2]);
 
