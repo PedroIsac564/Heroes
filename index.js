@@ -94,7 +94,7 @@ app.get('/herois/:id', async (req, res) => {
 
 app.get('/batalhas/:id1/:id2', async (req, res) => {
     try {
-     const { id1, id2 } = req.params;
+     const { id1, id2, nome1, nome2 } = req.params;
         const resultado1 = await pool.query('SELECT * FROM herois WHERE id = $1', [id1]);
         const resultado2 = await pool.query('SELECT * FROM herois WHERE id = $1', [id2]);
 
@@ -107,13 +107,14 @@ app.get('/batalhas/:id1/:id2', async (req, res) => {
 
         let vencedor;
         if ((heroi1.level && heroi2.level && heroi1.hp && heroi2.hp) &&
-            (heroi1.level > heroi2.level || (heroi1.level === heroi2.level && heroi1.hp > heroi2.hp))) {
+            (heroi1.level > heroi2.level ||
+                 (heroi1.level === heroi2.level && heroi1.hp > heroi2.hp))) {
             vencedor = heroi1;
         } else {
             vencedor = heroi2;
         }
 
-        await pool.query('INSERT INTO batalhas (heroes1_id, heroes2_id, winner_id) VALUES ($1, $2, $3)', [id1, id2, vencedor.id]);
+        await pool.query('INSERT INTO batalhas (heroes1_id, heroes2_id, winner_id, nome1, nome2) VALUES ($1, $2, $3, $4, $5)', [id1, id2, vencedor.id, nome1, nome2 ]);
 
         res.json({
             vencedor,

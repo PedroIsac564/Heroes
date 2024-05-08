@@ -15,7 +15,7 @@ heroes2_id INT,
 winner_id INT,
 FOREIGN KEY (heroes1_id) REFERENCES herois(id),
 FOREIGN KEY (heroes2_id) REFERENCES herois(id),
-FOREIGN KEY (winner_id) REFERENCES herois(id)
+FOREIGN KEY (winner_id) REFERENCES herois(id),
 );
 
 
